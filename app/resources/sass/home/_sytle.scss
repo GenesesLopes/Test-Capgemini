@@ -9,7 +9,13 @@
         @extend .color-router-link;
         .card-body{
             color: white;
-            background-color: $green;
+            background-color: $cap-color;
         }
     }
 }
+
+.remove-padding {
+    padding-right: 2px;
+    padding-left: 2px;
+}
+

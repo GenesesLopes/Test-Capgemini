@@ -10937,6 +10937,11 @@ a.text-dark:focus {
 
 .link-customized:hover .card-body {
   color: white;
-  background-color: #38c172;
+  background-color: #007db7;
+}
+
+.remove-padding {
+  padding-right: 2px;
+  padding-left: 2px;
 }
 
