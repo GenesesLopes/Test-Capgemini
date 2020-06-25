@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="card">
-        <form>
+        <form @submit.prevent="balance()">
           <div class="card-body">
             <h5 class="card-title">
               <strong>Verificar Saldo</strong>
@@ -23,8 +23,15 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <the-mask :mask="['##-#']" type="text" class="form-control" id="agencia"  />
-                      <div class="invalid-feedback">erro</div>
+                      <the-mask
+                        :mask="['##-#']"
+                        type="text"
+                        class="form-control"
+                        v-model="agencia"
+                        id="agencia"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agencia !== undefined}"
+                      />
+                      <div class="invalid-feedback">{{messagens.agencia}}</div>
                     </div>
                   </div>
                   <div class="col-md-8 col-sm-8">
@@ -35,11 +42,18 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <the-mask :mask="['#####-#']" type="text" class="form-control" id="conta"  />
-                      <div class="invalid-feedback">erro</div>
+                      <the-mask
+                        :mask="['#####-#']"
+                        type="text"
+                        class="form-control"
+                        id="conta"
+                        v-model="conta"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.conta !== undefined}"
+                      />
+                      <div class="invalid-feedback">{{messagens.conta}}</div>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-12" v-if="this.data !== null">
                     <h5 class="h5 text-center">Dados do Pessoais e Saldo</h5>
                     <table class="table table-sm text-center">
                       <thead>
@@ -60,10 +74,10 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" v-if="this.data !== null">
                 <div class="row">
                   <div class="col-md-12">
-                      <h5 class="h5 text-center">Ultimas três operações</h5>
+                    <h5 class="h5 text-center">Ultimas três operações</h5>
                     <table class="table table-sm text-center">
                       <thead>
                         <tr>
@@ -91,9 +105,9 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-success" type="submit">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Salvar
+            <button class="btn btn-success" type="submit" v-bind:disabled=" !loading ? disabled : ''" >
+              <span class="spinner-border spinner-border-sm" v-if="this.loading" role="status" aria-hidden="true"></span>
+              {{button_text}}
             </button>
           </div>
         </form>
@@ -102,5 +116,37 @@
   </div>
 </template>
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      agencia: null,
+      conta: null
+    };
+  },
+  computed: {
+    ...mapState({
+      loading: state => state.balance.loading,
+      button_text: state => state.balance.button_text,
+      success: state => state.balance.success,
+      messagens: state => state.balance.messagens,
+      data: state => state.balance.data
+    })
+  },
+  methods: {
+    balance() {
+      const data = {
+        agencia: this.agencia,
+        conta: this.conta
+      };
+      //disparando evento de criar cliente
+      this.$store.dispatch("getBalance", data);
+    }
+  },
+  mounted: function() {
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE");
+    this.$store.commit("DATA");
+  }
+};
 </script>

@@ -1908,6 +1908,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2011,7 +2018,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      agencia: null,
+      conta: null
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    loading: function loading(state) {
+      return state.balance.loading;
+    },
+    button_text: function button_text(state) {
+      return state.balance.button_text;
+    },
+    success: function success(state) {
+      return state.balance.success;
+    },
+    messagens: function messagens(state) {
+      return state.balance.messagens;
+    },
+    data: function data(state) {
+      return state.balance.data;
+    }
+  })),
+  methods: {
+    balance: function balance() {
+      var data = {
+        agencia: this.agencia,
+        conta: this.conta
+      }; //disparando evento de criar cliente
+
+      this.$store.dispatch("getBalance", data);
+    }
+  },
+  mounted: function mounted() {
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE");
+    this.$store.commit("DATA");
+  }
+});
 
 /***/ }),
 
@@ -2125,6 +2186,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2140,6 +2204,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     button_text: function button_text(state) {
       return state.create.button_text;
+    },
+    success: function success(state) {
+      return state.create.success;
+    },
+    messagens: function messagens(state) {
+      return state.create.messagens;
     }
   })),
   methods: {
@@ -2148,10 +2218,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nome: this.nome,
         cpf: this.cpf,
         email: this.email
-      };
-      console.log(this.loading);
+      }; //disparando evento de criar cliente
+
       this.$store.dispatch("createClient", data);
     }
+  },
+  mounted: function mounted() {
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE");
   }
 });
 
@@ -2166,6 +2240,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2269,7 +2350,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      agencia: null,
+      conta: null,
+      valor: "0.00"
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])({
+    loading: function loading(state) {
+      return state.deposit.loading;
+    },
+    button_text: function button_text(state) {
+      return state.deposit.button_text;
+    },
+    success: function success(state) {
+      return state.deposit.success;
+    },
+    messagens: function messagens(state) {
+      return state.deposit.messagens;
+    },
+    data: function data(state) {
+      return state.deposit.data;
+    }
+  })),
+  methods: {
+    deposit: function deposit() {
+      var data = {
+        agencia: this.agencia,
+        conta: this.conta,
+        valor: this.valor
+      }; //disparando evento
+
+      this.$store.dispatch("deposit", data);
+      console.log(this.data);
+    }
+  },
+  mounted: function mounted() {
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE");
+    this.$store.commit("DATA");
+  }
+});
 
 /***/ }),
 
@@ -38100,69 +38243,140 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "card" }, [
-        _c("form", [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "col-md-2 col-sm-2" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("the-mask", {
-                          staticClass: "form-control",
-                          attrs: { mask: ["##-#"], type: "text", id: "agencia" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v("erro")
-                        ])
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8 col-sm-8" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("the-mask", {
-                          staticClass: "form-control",
-                          attrs: {
-                            mask: ["#####-#"],
-                            type: "text",
-                            id: "conta"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v("erro")
-                        ])
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(4)
-                ])
-              ]),
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.balance()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _vm._m(0),
               _vm._v(" "),
-              _vm._m(5)
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "col-md-2 col-sm-2" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("the-mask", {
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.messagens !== undefined &&
+                                _vm.messagens.agencia !== undefined
+                            },
+                            attrs: {
+                              mask: ["##-#"],
+                              type: "text",
+                              id: "agencia"
+                            },
+                            model: {
+                              value: _vm.agencia,
+                              callback: function($$v) {
+                                _vm.agencia = $$v
+                              },
+                              expression: "agencia"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(_vm._s(_vm.messagens.agencia))
+                          ])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("the-mask", {
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.messagens !== undefined &&
+                                _vm.messagens.conta !== undefined
+                            },
+                            attrs: {
+                              mask: ["#####-#"],
+                              type: "text",
+                              id: "conta"
+                            },
+                            model: {
+                              value: _vm.conta,
+                              callback: function($$v) {
+                                _vm.conta = $$v
+                              },
+                              expression: "conta"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(_vm._s(_vm.messagens.conta))
+                          ])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    this.data !== null
+                      ? _c("div", { staticClass: "col-md-12" }, [
+                          _c("h5", { staticClass: "h5 text-center" }, [
+                            _vm._v("Dados do Pessoais e Saldo")
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4)
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                this.data !== null
+                  ? _c("div", { staticClass: "col-md-6" }, [_vm._m(5)])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: {
+                    type: "submit",
+                    disabled: !_vm.loading ? _vm.disabled : ""
+                  }
+                },
+                [
+                  this.loading
+                    ? _c("span", {
+                        staticClass: "spinner-border spinner-border-sm",
+                        attrs: { role: "status", "aria-hidden": "true" }
+                      })
+                    : _vm._e(),
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.button_text) + "\n          "
+                  )
+                ]
+              )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(6)
-        ])
+          ]
+        )
       ])
     ])
   ])
@@ -38207,30 +38421,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("h5", { staticClass: "h5 text-center" }, [
-        _vm._v("Dados do Pessoais e Saldo")
+    return _c("table", { staticClass: "table table-sm text-center" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Nome Completo")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("CFP")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Saldo")])
+        ])
       ]),
       _vm._v(" "),
-      _c("table", { staticClass: "table table-sm text-center" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Nome Completo")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("CFP")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Saldo")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("Nome Completo")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("111.111.111-11")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("R$ 40.00")])
-          ])
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [_vm._v("Nome Completo")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("111.111.111-11")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("R$ 40.00")])
         ])
       ])
     ])
@@ -38239,62 +38447,42 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("h5", { staticClass: "h5 text-center" }, [
-            _vm._v("Ultimas três operações")
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h5", { staticClass: "h5 text-center" }, [
+          _vm._v("Ultimas três operações")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table table-sm text-center" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Valor")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Operação")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Data")])
+            ])
           ]),
           _vm._v(" "),
-          _c("table", { staticClass: "table table-sm text-center" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Valor")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Operação")]),
-                _vm._v(" "),
-                _c("th", { attrs: { scope: "col" } }, [_vm._v("Data")])
-              ])
+          _c("tbody", [
+            _c("tr", { staticClass: "text-danger" }, [
+              _c("td", [_vm._v("Mark")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Otto")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")])
             ]),
             _vm._v(" "),
-            _c("tbody", [
-              _c("tr", { staticClass: "text-danger" }, [
-                _c("td", [_vm._v("Mark")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Otto")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")])
-              ]),
+            _c("tr", { staticClass: "text-success" }, [
+              _c("td", [_vm._v("Mark")]),
               _vm._v(" "),
-              _c("tr", { staticClass: "text-success" }, [
-                _c("td", [_vm._v("Mark")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Otto")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("@mdo")])
-              ])
+              _c("td", [_vm._v("Otto")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("@mdo")])
             ])
           ])
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [
-          _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          }),
-          _vm._v("\n            Salvar\n          ")
-        ]
-      )
     ])
   }
 ]
@@ -38352,6 +38540,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    class: {
+                      "is-invalid":
+                        _vm.messagens !== undefined &&
+                        _vm.messagens.nome !== undefined
+                    },
                     attrs: {
                       type: "text",
                       id: "nome",
@@ -38369,7 +38562,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v("erro")
+                    _vm._v(_vm._s(_vm.messagens.nome))
                   ])
                 ])
               ]),
@@ -38383,6 +38576,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("the-mask", {
                       staticClass: "form-control",
+                      class: {
+                        "is-invalid":
+                          _vm.messagens !== undefined &&
+                          _vm.messagens.cpf !== undefined
+                      },
                       attrs: {
                         mask: ["###.###.###-##"],
                         type: "text",
@@ -38398,7 +38596,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v("erro")
+                      _vm._v(_vm._s(_vm.messagens.cpf))
                     ])
                   ],
                   1
@@ -38419,6 +38617,11 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control",
+                    class: {
+                      "is-invalid":
+                        _vm.messagens !== undefined &&
+                        _vm.messagens.email !== undefined
+                    },
                     attrs: {
                       type: "email",
                       id: "email",
@@ -38436,12 +38639,14 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "invalid-feedback" }, [
-                    _vm._v("erro")
+                    _vm._v(_vm._s(_vm.messagens.email))
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(5)
+              this.success
+                ? _c("div", { staticClass: "col-md-12" }, [_vm._m(5)])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -38520,31 +38725,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c(
-        "div",
-        { staticClass: "alert alert-success", attrs: { role: "alert" } },
-        [
-          _c("p", [_vm._v("Suas credencias são:")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n                Ag:\n                "),
-            _c("strong", [_vm._v("34")])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n                Conta:\n                "),
-            _c("strong", [_vm._v("1111-11")])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v(
-              "Foi enviado um e-mail para o destino cadastrado, com as credencias."
-            )
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "alert alert-success", attrs: { role: "alert" } },
+      [
+        _c("p", [_vm._v("Suas credencias são:")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n                Ag:\n                "),
+          _c("strong", [_vm._v("34")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("\n                Conta:\n                "),
+          _c("strong", [_vm._v("1111-11")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Foi enviado um e-mail para o destino cadastrado, com as credencias."
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -38571,93 +38774,208 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "card" }, [
-        _c("form", [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("h5", { staticClass: "h5" }, [
-              _vm._v("Dados da conta destinatária!")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "form-row" }, [
-                  _c("div", { staticClass: "col-md-2 col-sm-2" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("the-mask", {
-                          staticClass: "form-control",
-                          attrs: { mask: ["##-#"], type: "text", id: "agencia" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v("erro")
-                        ])
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-8 col-sm-8" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("the-mask", {
-                          staticClass: "form-control",
-                          attrs: {
-                            mask: ["#####-#"],
-                            type: "text",
-                            id: "conta"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v("erro")
-                        ])
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6 col-sm-12" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _vm._m(5),
-                        _vm._v(" "),
-                        _c("money", {
-                          staticClass: "form-control",
-                          attrs: { id: "valor", value: "0.00" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "invalid-feedback" }, [
-                          _vm._v("erro")
-                        ])
-                      ],
-                      1
-                    )
-                  ])
-                ])
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.deposit()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("h5", { staticClass: "h5" }, [
+                _vm._v("Dados da conta destinatária!")
               ]),
               _vm._v(" "),
-              _vm._m(6)
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "col-md-2 col-sm-2" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("the-mask", {
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.messagens !== undefined &&
+                                _vm.messagens.agencia !== undefined
+                            },
+                            attrs: {
+                              mask: ["##-#"],
+                              type: "text",
+                              id: "agencia"
+                            },
+                            model: {
+                              value: _vm.agencia,
+                              callback: function($$v) {
+                                _vm.agencia = $$v
+                              },
+                              expression: "agencia"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(_vm._s(_vm.messagens.agencia))
+                          ])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-8 col-sm-8" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("the-mask", {
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.messagens !== undefined &&
+                                _vm.messagens.conta !== undefined
+                            },
+                            attrs: {
+                              mask: ["#####-#"],
+                              type: "text",
+                              id: "conta"
+                            },
+                            model: {
+                              value: _vm.conta,
+                              callback: function($$v) {
+                                _vm.conta = $$v
+                              },
+                              expression: "conta"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(_vm._s(_vm.messagens.conta))
+                          ])
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    this.data !== null
+                      ? _c("div", { staticClass: "col-md-12" }, [
+                          _c("h5", { staticClass: "h5 text-center" }, [
+                            _vm._v("Dados do destinatário")
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(4)
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 col-sm-12" }, [
+                      _c(
+                        "div",
+                        { staticClass: "form-group" },
+                        [
+                          _vm._m(5),
+                          _vm._v(" "),
+                          _c("money", {
+                            staticClass: "form-control",
+                            class: {
+                              "is-invalid":
+                                _vm.messagens !== undefined &&
+                                _vm.messagens.valor !== undefined
+                            },
+                            attrs: { id: "valor", value: "this.valor" },
+                            model: {
+                              value: _vm.valor,
+                              callback: function($$v) {
+                                _vm.valor = $$v
+                              },
+                              expression: "valor"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(_vm._s(_vm.messagens.valor))
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                this.data !== null
+                  ? _c("div", { staticClass: "col-md-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "alert alert-success",
+                          attrs: { role: "alert" }
+                        },
+                        [
+                          _c("p", [_vm._v("Deposito realizado com Sucesso:")]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                  Ag:\n                  "
+                            ),
+                            _c("strong", [_vm._v(_vm._s(this.agencia))])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                  Conta:\n                  "
+                            ),
+                            _c("strong", [_vm._v(_vm._s(this.conta))])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [
+                            _vm._v(
+                              "\n                  Valor:\n                  "
+                            ),
+                            _c("strong", [_vm._v("R$ " + _vm._s(this.valor))])
+                          ])
+                        ]
+                      )
+                    ])
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: {
+                    type: "submit",
+                    disabled: !_vm.loading ? _vm.disabled : ""
+                  }
+                },
+                [
+                  this.loading
+                    ? _c("span", {
+                        staticClass: "spinner-border spinner-border-sm",
+                        attrs: { role: "status", "aria-hidden": "true" }
+                      })
+                    : _vm._e(),
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.button_text) + "\n          "
+                  )
+                ]
+              )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(7)
-        ])
+          ]
+        )
       ])
     ])
   ])
@@ -38702,26 +39020,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("h5", { staticClass: "h5 text-center" }, [
-        _vm._v("Dados do destinatário")
+    return _c("table", { staticClass: "table table-sm text-center" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Nome Completo")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("CFP")])
+        ])
       ]),
       _vm._v(" "),
-      _c("table", { staticClass: "table table-sm text-center" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Nome Completo")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("CFP")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("Nome Completo")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("111.111.111-11")])
-          ])
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [_vm._v("Nome Completo")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("111.111.111-11")])
         ])
       ])
     ])
@@ -38733,53 +39045,6 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "valor" } }, [
       _vm._v("\n                      Valor\n                      "),
       _c("span", { staticClass: "text-danger" }, [_c("strong", [_vm._v("*")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c(
-        "div",
-        { staticClass: "alert alert-success", attrs: { role: "alert" } },
-        [
-          _c("p", [_vm._v("Deposito realizado com Sucesso:")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n                  Ag:\n                  "),
-            _c("strong", [_vm._v("34")])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n                  Conta:\n                  "),
-            _c("strong", [_vm._v("1111-11")])
-          ]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n                  Valor:\n                  "),
-            _c("strong", [_vm._v("R$ 40,00")])
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [
-          _c("span", {
-            staticClass: "spinner-border spinner-border-sm",
-            attrs: { role: "status", "aria-hidden": "true" }
-          }),
-          _vm._v("\n            Salvar\n          ")
-        ]
-      )
     ])
   }
 ]
@@ -56953,6 +57218,54 @@ var routes = [{
 
 /***/ }),
 
+/***/ "./resources/js/vuex/modules/balance.js":
+/*!**********************************************!*\
+  !*** ./resources/js/vuex/modules/balance.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    loading: false,
+    messagens: [],
+    button_text: "Buscar",
+    success: false,
+    data: null
+  },
+  mutations: {
+    ERRO_MESSAGE: function ERRO_MESSAGE(state) {
+      var messagens = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (messagens == "") state.messagens = [];else state.messagens = messagens;
+    },
+    LOADING: function LOADING(state, button) {
+      state.loading = !state.loading;
+      state.button_text = button;
+    },
+    DATA: function DATA(state) {
+      var response = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (response == "") state.data = null;else state.data = response.data;
+    }
+  },
+  actions: {
+    getBalance: function getBalance(context, params) {
+      context.commit("LOADING", "Aguarde...");
+      context.commit("ERRO_MESSAGE");
+      setTimeout(function () {
+        context.commit("LOADING", "Buscar");
+        context.commit("ERRO_MESSAGE", {
+          agencia: "erro agencia",
+          conta: "erro Conta Corrente"
+        });
+      }, 2000);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/vuex/modules/create.js":
 /*!*********************************************!*\
   !*** ./resources/js/vuex/modules/create.js ***!
@@ -56966,28 +57279,90 @@ __webpack_require__.r(__webpack_exports__);
   state: {
     loading: false,
     messagens: [],
-    button_text: 'Salvar'
+    button_text: "Salvar",
+    success: false,
+    data: null
   },
   mutations: {
-    MESSAGE: function MESSAGE(state, messagens) {
-      state.messagens = messagens;
+    ERRO_MESSAGE: function ERRO_MESSAGE(state) {
+      var messagens = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      if (messagens == "") state.messagens = [];else state.messagens = messagens;
     },
     LOADING: function LOADING(state, button) {
       state.loading = !state.loading;
       state.button_text = button;
+    },
+    DATA: function DATA(state, response) {
+      state.data = response.data;
     }
   },
   actions: {
     createClient: function createClient(context, params) {
-      context.commit('LOADING', 'Aguarde...');
+      context.commit("LOADING", "Aguarde...");
+      context.commit("ERRO_MESSAGE");
       setTimeout(function () {
-        context.commit('LOADING', 'Salvar');
+        context.commit("LOADING", "Salvar");
+        context.commit("ERRO_MESSAGE", {
+          email: "erro email",
+          nome: "erro Nome",
+          cpf: "erro CPF"
+        });
       }, 2000);
       /*
       uma requisição axios antes
       context.commit('CREATE_CLIENT',response.data)
       */
       //console.log(context,params)
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/vuex/modules/deposit.js":
+/*!**********************************************!*\
+  !*** ./resources/js/vuex/modules/deposit.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    loading: false,
+    messagens: [],
+    button_text: "Despositar",
+    success: false,
+    data: null
+  },
+  mutations: {
+    ERRO_MESSAGE: function ERRO_MESSAGE(state) {
+      var messagens = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (messagens == "") state.messagens = [];else state.messagens = messagens;
+    },
+    LOADING: function LOADING(state, button) {
+      state.loading = !state.loading;
+      state.button_text = button;
+    },
+    DATA: function DATA(state) {
+      var response = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (response == "") state.data = null;else state.data = response.data;
+    }
+  },
+  actions: {
+    deposit: function deposit(context, params) {
+      context.commit("LOADING", "Aguarde...");
+      context.commit("ERRO_MESSAGE");
+      setTimeout(function () {
+        context.commit("LOADING", "Despositar");
+        context.commit("ERRO_MESSAGE", {
+          agencia: "erro agencia",
+          conta: "erro Conta Corrente",
+          valor: 'erro Valor'
+        });
+      }, 2000);
+      console.log(params);
     }
   }
 });
@@ -57007,13 +57382,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_create__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/create */ "./resources/js/vuex/modules/create.js");
+/* harmony import */ var _modules_balance__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/balance */ "./resources/js/vuex/modules/balance.js");
+/* harmony import */ var _modules_deposit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/deposit */ "./resources/js/vuex/modules/deposit.js");
+
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    create: _modules_create__WEBPACK_IMPORTED_MODULE_2__["default"]
+    create: _modules_create__WEBPACK_IMPORTED_MODULE_2__["default"],
+    balance: _modules_balance__WEBPACK_IMPORTED_MODULE_3__["default"],
+    deposit: _modules_deposit__WEBPACK_IMPORTED_MODULE_4__["default"]
   }
 }));
 

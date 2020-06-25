@@ -26,8 +26,9 @@
                   id="nome"
                   v-model="nome"
                   placeholder="Nome completo"
+                  v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.nome !== undefined}"
                 />
-                <div class="invalid-feedback">erro</div>
+                <div class="invalid-feedback">{{messagens.nome}}</div>
               </div>
             </div>
             <div class="col-md-6">
@@ -43,9 +44,10 @@
                   type="text"
                   v-model="cpf"
                   class="form-control"
+                  v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.cpf !== undefined }"
                   id="cpf"
                 />
-                <div class="invalid-feedback">erro</div>
+                <div class="invalid-feedback">{{messagens.cpf}}</div>
               </div>
             </div>
             <div class="col-md-6">
@@ -62,11 +64,12 @@
                   id="email"
                   v-model="email"
                   placeholder="E-mail"
+                  v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.email !== undefined }"
                 />
-                <div class="invalid-feedback">erro</div>
+                <div class="invalid-feedback">{{messagens.email}}</div>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" v-if="this.success">
               <div class="alert alert-success" role="alert">
                 <p>Suas credencias são:</p>
                 <p>
@@ -105,7 +108,9 @@ export default {
   computed: {
     ...mapState({
       loading: state => state.create.loading,
-      button_text: state => state.create.button_text
+      button_text: state => state.create.button_text,
+      success: state => state.create.success,
+      messagens: state => state.create.messagens
     })
   },
   methods: {
@@ -115,9 +120,13 @@ export default {
         cpf: this.cpf,
         email: this.email
       };
-      console.log(this.loading);
+      //disparando evento de criar cliente
       this.$store.dispatch("createClient", data);
     }
+  },
+  mounted: function(){
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE")
   }
 };
 </script>
