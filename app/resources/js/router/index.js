@@ -44,9 +44,8 @@ const routes = [
 
 ];
 
-const router = new Router({
+export default new Router({
     mode: 'history',
+    linkExactActiveClass: 'is-active',
     routes
 });
-
-export default router;

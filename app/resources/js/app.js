@@ -20,25 +20,26 @@ import router from './router';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 //componente Raiz
-Vue.component('index', require('./components/index.vue').default);
+Vue.component('index', require('./components').default);
 //Pagina Inicial
-Vue.component('home', require('./pages/Home/index.vue').default);
+Vue.component('home', require('./pages/Home').default);
 Vue.component('descricao', require('./components/Home/descricao.vue').default);
 Vue.component('operacoes', require('./components/Home/operacoes.vue').default);
 
-Vue.component('create', require('./pages/Create/index.vue').default);
-Vue.component('create-component', require('./components/Create/index.vue').default);
+Vue.component('create', require('./pages/Create').default);
+Vue.component('create-component', require('./components/Create').default);
 
-Vue.component('balance', require('./components/Balance/index.vue').default);
-Vue.component('balance-component', require('./components/Balance/index.vue').default);
+Vue.component('balance', require('./components/Balance').default);
+Vue.component('balance-component', require('./components/Balance').default);
 
-Vue.component('deposit', require('./components/Deposit/index.vue').default);
-Vue.component('deposit-component', require('./components/Deposit/index.vue').default);
+Vue.component('deposit', require('./components/Deposit').default);
+Vue.component('deposit-component', require('./components/Deposit').default);
 
-Vue.component('withdraw', require('./components/Withdraw/index.vue').default);
-Vue.component('withdraw-component', require('./components/Withdraw/index.vue').default);
+Vue.component('withdraw', require('./components/Withdraw').default);
+Vue.component('withdraw-component', require('./components/Withdraw').default);
 
 Vue.component('not-found', require('./components/Error/404.vue').default);
+Vue.component('navbar', require('./components/Navbar').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

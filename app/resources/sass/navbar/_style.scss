@@ -1,0 +1,6 @@
+.is-active {
+    background-color: $cap-color;
+    @extend .active;
+    @extend .rounded-pill;
+    @extend .disabled;
+}
