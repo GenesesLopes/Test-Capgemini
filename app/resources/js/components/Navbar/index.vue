@@ -14,7 +14,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" ref="menu">
           <li class="nav-item">
               <router-link class="nav-link navbar-brand" :to="{ name: 'create'}">Cadastrar</router-link>
           </li>
@@ -32,3 +32,10 @@
     </nav>
   </div>
 </template>
+<script>
+export default {
+  mounted: function(){
+    document.querySelector(".is-active").parentNode.classList.add("color-text-link");
+  }
+}
+</script>

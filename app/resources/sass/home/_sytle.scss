@@ -3,13 +3,18 @@
     color: #212529;
 }
 
+.color-text-link {
+    color: white;
+    background-color: $cap-color;
+}
+
+
 .link-customized {
     @extend .color-router-link;
     &:hover {
         @extend .color-router-link;
         .card-body{
-            color: white;
-            background-color: $cap-color;
+            @extend .color-text-link;
         }
     }
 }

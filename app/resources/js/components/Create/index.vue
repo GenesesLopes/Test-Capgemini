@@ -21,6 +21,7 @@
                   </span>
                 </label>
                 <input type="text" class="form-control" id="name" placeholder="Nome completo" />
+                <div class="invalid-feedback">erro</div>
               </div>
             </div>
             <div class="col-md-6">
@@ -32,6 +33,7 @@
                   </span>
                 </label>
                 <input type="text" class="form-control" id="cpf" placeholder="CPF" />
+                <div class="invalid-feedback">erro</div>
               </div>
             </div>
             <div class="col-md-6">
@@ -43,6 +45,7 @@
                   </span>
                 </label>
                 <input type="email" class="form-control" id="email" placeholder="E-mail" />
+                <div class="invalid-feedback">erro</div>
               </div>
             </div>
           </div>
