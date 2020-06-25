@@ -1,0 +1,15 @@
+.color-router-link {
+    text-decoration: none;
+    color: #212529;
+}
+
+.link-customized {
+    @extend .color-router-link;
+    &:hover {
+        @extend .color-router-link;
+        .card-body{
+            color: white;
+            background-color: $green;
+        }
+    }
+}

@@ -1,0 +1,3 @@
+<template>
+    <deposit-component />
+</template>
