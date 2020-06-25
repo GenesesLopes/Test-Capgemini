@@ -23,7 +23,7 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <input type="text" class="form-control" id="agencia" />
+                      <the-mask :mask="['##-#']" type="text" class="form-control" id="agencia"  />
                       <div class="invalid-feedback">erro</div>
                     </div>
                   </div>
@@ -35,22 +35,33 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <input type="text" class="form-control" id="conta" />
+                      <the-mask :mask="['#####-#']" type="text" class="form-control" id="conta"  />
                       <div class="invalid-feedback">erro</div>
                     </div>
+                  </div>
+                  <div class="col-md-12">
+                    <h5 class="h5 text-center">Dados do Pessoais e Saldo</h5>
+                    <table class="table table-sm text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nome Completo</th>
+                          <th scope="col">CFP</th>
+                          <th scope="col">Saldo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Nome Completo</td>
+                          <td>111.111.111-11</td>
+                          <td>R$ 40.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="row">
-                  <div class="col-md-12">
-                    <dl class="row">
-                      <dt class="col-sm-3 text-center"><h3 class="h3"><strong>Saldo</strong></h3></dt>
-                      <dd
-                        class="col-sm-9 text-center text-success"
-                      ><strong>R$ 400,00</strong></dd>
-                    </dl>
-                  </div>
                   <div class="col-md-12">
                       <h5 class="h5 text-center">Ultimas três operações</h5>
                     <table class="table table-sm text-center">

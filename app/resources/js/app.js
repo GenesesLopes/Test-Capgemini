@@ -9,6 +9,14 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import router from './router';
+import VueTheMask from 'vue-the-mask';
+Vue.use(VueTheMask);
+
+import money from 'v-money';
+import store from './vuex/store';
+
+// register directive v-money and component <money>
+Vue.use(money, {precision: 2})
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49,5 +57,6 @@ Vue.component('navbar', require('./components/Navbar').default);
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

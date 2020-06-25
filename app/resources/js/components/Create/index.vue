@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card">
-      <form>
+      <form @submit.prevent="client()">
         <div class="card-body">
           <h5 class="card-title">
             <strong>Cadastro de Usuários</strong>
@@ -14,13 +14,19 @@
           <div class="form-row">
             <div class="col-md-12">
               <div class="form-group">
-                <label for="name">
+                <label for="nome">
                   Nome Completo
                   <span class="text-danger">
                     <strong>*</strong>
                   </span>
                 </label>
-                <input type="text" class="form-control" id="name" placeholder="Nome completo" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  v-model="nome"
+                  placeholder="Nome completo"
+                />
                 <div class="invalid-feedback">erro</div>
               </div>
             </div>
@@ -32,7 +38,13 @@
                     <strong>*</strong>
                   </span>
                 </label>
-                <input type="text" class="form-control" id="cpf" placeholder="CPF" />
+                <the-mask
+                  :mask="['###.###.###-##']"
+                  type="text"
+                  v-model="cpf"
+                  class="form-control"
+                  id="cpf"
+                />
                 <div class="invalid-feedback">erro</div>
               </div>
             </div>
@@ -44,20 +56,36 @@
                     <strong>*</strong>
                   </span>
                 </label>
-                <input type="email" class="form-control" id="email" placeholder="E-mail" />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  v-model="email"
+                  placeholder="E-mail"
+                />
                 <div class="invalid-feedback">erro</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="alert alert-success" role="alert">
+                <p>Suas credencias são:</p>
+                <p>
+                  Ag:
+                  <strong>34</strong>
+                </p>
+                <p>
+                  Conta:
+                  <strong>1111-11</strong>
+                </p>
+                <p>Foi enviado um e-mail para o destino cadastrado, com as credencias.</p>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-success" type="submit">
-            <span
-              class="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            Salvar
+          <button class="btn btn-success" type="submit" v-bind:disabled=" !loading ? disabled : ''">
+            <span class="spinner-border spinner-border-sm" v-if="this.loading" role="status" aria-hidden="true"></span>
+            {{button_text}}
           </button>
         </div>
       </form>
@@ -65,5 +93,31 @@
   </div>
 </template>
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      cpf: null,
+      email: null,
+      nome: null,
+    };
+  },
+  computed: {
+    ...mapState({
+      loading: state => state.create.loading,
+      button_text: state => state.create.button_text
+    })
+  },
+  methods: {
+    client() {
+      const data = {
+        nome: this.nome,
+        cpf: this.cpf,
+        email: this.email
+      };
+      console.log(this.loading);
+      this.$store.dispatch("createClient", data);
+    }
+  }
+};
 </script>
