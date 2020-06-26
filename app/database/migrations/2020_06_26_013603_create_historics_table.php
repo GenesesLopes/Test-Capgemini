@@ -15,11 +15,10 @@ class CreateHistoricsTable extends Migration
     {
         Schema::create('historics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('user_recipient')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('action',45);
+            $table->double('value',10,2)->default(0.00);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('user_recipient')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
 
         });

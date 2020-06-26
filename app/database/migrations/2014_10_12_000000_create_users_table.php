@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('agency');
             $table->string('account')->unique();
-            $table->double('balance',8,2);
+            $table->double('balance',10,2)->default(0.00);
             $table->timestamps();
         });
     }

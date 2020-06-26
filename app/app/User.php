@@ -5,6 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Casts\{
+    Cpf,
+    Account,
+    Agency,
+    Value
+};
 
 class User extends Authenticatable
 {
@@ -26,7 +32,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'cpf'   => Cpf::class,
+        'account' => Account::class,
+        'agency' => Agency::class,
+        'balance' => Value::class
     ];
 
     //relacionamentos
@@ -34,8 +43,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Historic::class, 'user_id');
     }
-    public function recipient()
+    
+    //Verificar Cpf
+    public function getCpf($cpf): ?User
     {
-        return $this->hasMany(Historic::class, 'user_recipient');
+        foreach(self::all() as $user){
+            if($user->cpf === $cpf)
+                return $user;
+        }
+        return null;
     }
 }

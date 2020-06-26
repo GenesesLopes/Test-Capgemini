@@ -2,30 +2,30 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
+use App\Casts\Value;
 class Historic extends Model
 {
     protected $fillable = [
         'user_id',
-        'user_recipient',
         'action',
+        'value',
         'created_at'
     ];
 
+    protected $casts = [
+        'value' => Value::class
+    ];
     /*Relacionamentos*/
 
-    //Usuário emissor
-    public function userSender()
+    //Usuário
+    public function user()
     {
         return $this->belongsTo(User::class,'user_id');
     }
 
-    //usuário receptor
-    public function userRecipient()
-    {
-        return $this->belongsTo(User::class,'user_recipient');
-    }
+    
     
 
 
