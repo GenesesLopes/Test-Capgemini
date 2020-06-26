@@ -1,3 +1,5 @@
+import api from '../../services/api';
+
 export default {
     state: {
         loading: false,
