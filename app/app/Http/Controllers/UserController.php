@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class UserController extends Controller
 {
@@ -19,6 +20,7 @@ class UserController extends Controller
         ];
     }
 
+    //Criação de novos usuários
     public function store(Request $request){
         $data = [
             'dados_pessoais' => $request->all(),
@@ -26,10 +28,29 @@ class UserController extends Controller
         ];
         return response($data,201);
     }
-
+    //Recuperação de dados pessoais
     public function information(string $agency, string $account)
     {
         dd($agency,$account);
     }
+
+    //Saldo
+    public function balance(string $agency, string $account)
+    {
+        dd($agency,$account);
+    }
+
+    //Depósito
+    public function deposit(Request $request)
+    {
+        return response($request->all());
+    }
+    
+    //Saque
+    public function withdraw(Request $request)
+    {
+        return response($request->all());
+    }
+
 
 }
