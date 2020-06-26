@@ -28,7 +28,8 @@ export default {
                 context.commit("LOADING", "Sacar");
                 context.commit("ERRO_MESSAGE", {
                     agencia: "erro agencia",
-                    conta: "erro Conta Corrente"
+                    conta: "erro Conta Corrente",
+                    valor: 'erro valor'
                 });
             }, 2000);
         }

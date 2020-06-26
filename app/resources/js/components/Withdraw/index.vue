@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="card">
-        <form>
+        <form @submit.prevent="withdraw()">
           <div class="card-body">
             <h5 class="card-title">
               <strong>Saque</strong>
@@ -24,8 +24,15 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <the-mask :mask="['##-#']" type="text" class="form-control" id="agencia" />
-                      <div class="invalid-feedback">erro</div>
+                      <the-mask
+                        :mask="['##-#']"
+                        type="text"
+                        class="form-control"
+                        v-model="agencia"
+                        id="agencia"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agencia !== undefined}"
+                      />
+                      <div class="invalid-feedback">{{messagens.agencia}}</div>
                     </div>
                   </div>
                   <div class="col-md-8 col-sm-8">
@@ -36,11 +43,18 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <the-mask :mask="['#####-#']" type="text" class="form-control" id="conta" />
-                      <div class="invalid-feedback">erro</div>
+                      <the-mask
+                        :mask="['#####-#']"
+                        type="text"
+                        class="form-control"
+                        id="conta"
+                        v-model="conta"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.conta !== undefined}"
+                      />
+                      <div class="invalid-feedback">{{messagens.conta}}</div>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-12" v-if="this.data !== null">
                     <h5 class="h5 text-center">Dados do pessoais</h5>
                     <table class="table table-sm text-center">
                       <thead>
@@ -65,26 +79,41 @@
                           <strong>*</strong>
                         </span>
                       </label>
-                      <money class="form-control" id="valor" value="0.00"></money>
-                      <div class="invalid-feedback">erro</div>
+                      <money
+                        class="form-control"
+                        id="valor"
+                        v-model="valor"
+                        value="this.valor"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.valor !== undefined}"
+                      ></money>
+                      <div class="invalid-feedback">{{messagens.valor}}</div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" v-if="this.data !== null">
                 <div class="alert alert-success" role="alert">
                   <p>Saque realizado com Sucesso no valor de:</p>
                   <p>
-                    <strong>R$ 40,00</strong>
+                    <strong>R$ {{this.valor}}</strong>
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-success" type="submit">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Salvar
+            <button
+              class="btn btn-success"
+              type="submit"
+              v-bind:disabled=" !loading ? disabled : ''"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                v-if="this.loading"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              {{button_text}}
             </button>
           </div>
         </form>
@@ -93,5 +122,39 @@
   </div>
 </template>
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  data() {
+    return {
+      agencia: null,
+      conta: null,
+      valor: "0.00"
+    };
+  },
+  computed: {
+    ...mapState({
+      loading: state => state.withdraw.loading,
+      button_text: state => state.withdraw.button_text,
+      success: state => state.withdraw.success,
+      messagens: state => state.withdraw.messagens,
+      data: state => state.withdraw.data
+    })
+  },
+  methods: {
+    withdraw() {
+      const data = {
+        agencia: this.agencia,
+        conta: this.conta,
+        valor: this.valor
+      };
+      //disparando evento
+      this.$store.dispatch("withdraw", data);
+    }
+  },
+  mounted: function() {
+    //Limpando mensagens de erro
+    this.$store.commit("ERRO_MESSAGE");
+    this.$store.commit("DATA");
+  }
+};
 </script>

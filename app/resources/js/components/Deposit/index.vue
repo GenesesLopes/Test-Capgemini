@@ -148,7 +148,6 @@ export default {
       };
       //disparando evento
       this.$store.dispatch("deposit", data);
-      console.log(this.data)
     }
   },
   mounted: function() {
