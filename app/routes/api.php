@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::get('/', function () {
-    return [
-        'teste'
-    ];
+Route::group(['prefix' => 'v1'],function(){
+    Route::get('/', function () {
+        return [
+            'teste'
+        ];
+    });
 });
+
+
