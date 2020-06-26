@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Ui\Presets\React;
+
+use App\Http\Validator\CreateUserValidator;
+
 
 class UserController extends Controller
 {
@@ -21,7 +23,13 @@ class UserController extends Controller
     }
 
     //Criação de novos usuários
-    public function store(Request $request){
+    public function store(Request $request, CreateUserValidator $validatorUser)
+    {
+        //Validando entradas
+        $validatedData = $validatorUser->validator($request);
+
+        if(count($validatedData))   
+            return response($validatedData,422);
         $data = [
             'dados_pessoais' => $request->all(),
             'dados_bancarios' => $this->generate()
@@ -31,7 +39,7 @@ class UserController extends Controller
     //Recuperação de dados pessoais
     public function information(string $agency, string $account)
     {
-        dd($agency,$account);
+        dd(12);
     }
 
     //Saldo
