@@ -63,7 +63,7 @@
                       <thead>
                         <tr>
                           <th scope="col">Nome Completo</th>
-                          <th scope="col">CFP</th>
+                          <th scope="col">CPF</th>
                           <th scope="col">Saldo</th>
                         </tr>
                       </thead>
