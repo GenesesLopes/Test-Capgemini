@@ -18,8 +18,8 @@
                 <div class="form-row">
                   <div class="col-md-2 col-sm-2">
                     <div class="form-group">
-                      <label for="agencia">
-                        Agencia
+                      <label for="agency">
+                        Agência
                         <span class="text-danger">
                           <strong>*</strong>
                         </span>
@@ -28,11 +28,13 @@
                         :mask="['##-#']"
                         type="text"
                         class="form-control"
-                        v-model="agencia"
-                        id="agencia"
-                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agencia !== undefined}"
+                        v-model="agency"
+                        id="agency"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agency !== undefined}"
                       />
-                      <div class="invalid-feedback">{{messagens.agencia}}</div>
+                      <div class="invalid-feedback">
+                        <p v-for="message in messagens.agency" :key="message">{{message}}</p>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-8 col-sm-8">
@@ -44,32 +46,17 @@
                         </span>
                       </label>
                       <the-mask
-                        :mask="['#####-#']"
+                        :mask="['##.###-##']"
                         type="text"
                         class="form-control"
                         id="conta"
-                        v-model="conta"
-                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.conta !== undefined}"
+                        v-model="account"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.account !== undefined}"
                       />
-                      <div class="invalid-feedback">{{messagens.conta}}</div>
+                      <div class="invalid-feedback">
+                        <p v-for="message in messagens.account" :key="message">{{message}}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-12" v-if="this.data !== null">
-                    <h5 class="h5 text-center">Dados do destinatário</h5>
-                    <table class="table table-sm text-center">
-                      <thead>
-                        <tr>
-                          <th scope="col">Nome Completo</th>
-                          <th scope="col">CFP</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Nome Completo</td>
-                          <td>111.111.111-11</td>
-                        </tr>
-                      </tbody>
-                    </table>
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <div class="form-group">
@@ -81,29 +68,31 @@
                       </label>
                       <money class="form-control"
                        id="valor"
-                        v-model="valor"
+                        v-model="value"
                         value="this.valor"
-                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.valor !== undefined}"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.value !== undefined}"
                         ></money>
-                      <div class="invalid-feedback">{{messagens.valor}}</div>
+                      <div class="invalid-feedback">
+                        <p v-for="message in messagens.value" :key="message">{{message}}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6" v-if="this.data !== null">
+              <div class="col-md-6" v-if="this.success == true">
                 <div class="alert alert-success" role="alert">
                   <p>Deposito realizado com Sucesso:</p>
                   <p>
                     Ag:
-                    <strong>{{this.agencia}}</strong>
+                    <strong>{{this.agency}}</strong>
                   </p>
                   <p>
                     Conta:
-                    <strong>{{this.conta}}</strong>
+                    <strong>{{this.account}}</strong>
                   </p>
                   <p>
                     Valor:
-                    <strong>R$ {{this.valor}}</strong>
+                    <strong>R$ {{this.value}}</strong>
                   </p>
                 </div>
               </div>
@@ -125,9 +114,9 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      agencia: null,
-      conta: null,
-      valor: "0.00"
+      agency: null,
+      account: null,
+      value: "0.00"
     };
   },
   computed: {
@@ -135,16 +124,15 @@ export default {
       loading: state => state.deposit.loading,
       button_text: state => state.deposit.button_text,
       success: state => state.deposit.success,
-      messagens: state => state.deposit.messagens,
-      data: state => state.deposit.data
+      messagens: state => state.deposit.messagens
     })
   },
   methods: {
     deposit() {
       const data = {
-        agencia: this.agencia,
-        conta: this.conta,
-        valor: this.valor
+        agency: this.agency,
+        account: this.account,
+        value: this.value
       };
       //disparando evento
       this.$store.dispatch("deposit", data);
@@ -153,7 +141,7 @@ export default {
   mounted: function() {
     //Limpando mensagens de erro
     this.$store.commit("ERRO_MESSAGE");
-    this.$store.commit("DATA");
+    this.$store.commit("SUCCESS",[]);
   }
 };
 </script>

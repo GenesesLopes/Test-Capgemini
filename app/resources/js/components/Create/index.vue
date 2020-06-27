@@ -24,11 +24,13 @@
                   type="text"
                   class="form-control"
                   id="nome"
-                  v-model="nome"
+                  v-model="name"
                   placeholder="Nome completo"
-                  v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.nome !== undefined}"
+                  v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.name !== undefined}"
                 />
-                <div class="invalid-feedback">{{messagens.nome}}</div>
+                <div class="invalid-feedback">
+                  <span v-for="message in messagens.name" :key="message">{{message}}</span>
+                  </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -47,7 +49,9 @@
                   v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.cpf !== undefined }"
                   id="cpf"
                 />
-                <div class="invalid-feedback">{{messagens.cpf}}</div>
+                <div class="invalid-feedback">
+                  <span v-for="message in messagens.cpf" :key="message">{{message}}</span>
+                  </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -66,7 +70,9 @@
                   placeholder="E-mail"
                   v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.email !== undefined }"
                 />
-                <div class="invalid-feedback">{{messagens.email}}</div>
+                <div class="invalid-feedback">
+                  <span v-for="message in messagens.email" :key="message">{{message}}</span>
+                </div>
               </div>
             </div>
             <div class="col-md-12" v-if="this.success">
@@ -74,13 +80,12 @@
                 <p>Suas credencias são:</p>
                 <p>
                   Ag:
-                  <strong>34</strong>
+                  <strong>{{data.agency}}</strong>
                 </p>
                 <p>
                   Conta:
-                  <strong>1111-11</strong>
+                  <strong>{{data.account}}</strong>
                 </p>
-                <p>Foi enviado um e-mail para o destino cadastrado, com as credencias.</p>
               </div>
             </div>
           </div>
@@ -102,7 +107,7 @@ export default {
     return {
       cpf: null,
       email: null,
-      nome: null,
+      name: null,
     };
   },
   computed: {
@@ -110,13 +115,14 @@ export default {
       loading: state => state.create.loading,
       button_text: state => state.create.button_text,
       success: state => state.create.success,
-      messagens: state => state.create.messagens
+      messagens: state => state.create.messagens,
+      data: state => state.create.data
     })
   },
   methods: {
     client() {
       const data = {
-        nome: this.nome,
+        name: this.name,
         cpf: this.cpf,
         email: this.email
       };
@@ -125,8 +131,9 @@ export default {
     }
   },
   mounted: function(){
-    //Limpando mensagens de erro
+    //Limpando mensagens de erro e campo de sucesso
     this.$store.commit("ERRO_MESSAGE")
+    this.$store.commit("SUCCESS")
   }
 };
 </script>

@@ -1,10 +1,22 @@
+import Vue from 'vue';
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+import api from '../../services/api';
+
+const optionsAlertSuccess = {
+    icon: 'success'
+};
+const optionsAlertError = {
+    icon: 'error'
+};
+
 export default {
     state: {
         loading: false,
         messagens: [],
         button_text: "Despositar",
         success: false,
-        data: null
     },
     mutations: {
         ERRO_MESSAGE(state, messagens = "") {
@@ -15,24 +27,33 @@ export default {
             state.loading = !state.loading;
             state.button_text = button;
         },
-        DATA(state, response = "") {
-            if (response == "") state.data = null;
-            else state.data = response.data;
-        }
+        SUCCESS(state,success = false)
+        {
+            state.success = success
+        },
     },
     actions: {
-        deposit(context, params) {
+        async deposit(context, params) {
             context.commit("LOADING", "Aguarde...");
             context.commit("ERRO_MESSAGE");
-            setTimeout(() => {
-                context.commit("LOADING", "Despositar");
-                context.commit("ERRO_MESSAGE", {
-                    agencia: "erro agencia",
-                    conta: "erro Conta Corrente",
-                    valor: 'erro Valor'
-                });
-            }, 2000);
-            console.log(params);
+            await api.put('/account/deposit',{
+                agency: params.agency,
+                account: params.account,
+                value: params.value
+            }).then(response => {
+                context.commit("SUCCESS",true);
+                Vue.use(VueSweetalert2,optionsAlertSuccess);
+                Vue.swal('Sucesso!','Deposito realizado com sucesso!');
+            }).catch(error => {
+                if(error.response.status !== 422){
+                    Vue.use(VueSweetalert2,optionsAlertError);
+                    Vue.swal('Erro!','Erro ao realizar deposito');
+                }else{
+                    context.commit("ERRO_MESSAGE",error.response.data)
+                }                
+            }).finally(() => {
+                context.commit("LOADING", "Depositar");
+            });
         }
     }
 };

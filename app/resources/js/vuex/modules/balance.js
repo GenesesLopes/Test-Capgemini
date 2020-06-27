@@ -1,4 +1,4 @@
-import api from '../../services/api';
+import api from "../../services/api";
 
 export default {
     state: {
@@ -23,16 +23,22 @@ export default {
         }
     },
     actions: {
-        getBalance(context, params) {
+        async getBalance(context, params) {
             context.commit("LOADING", "Aguarde...");
             context.commit("ERRO_MESSAGE");
-            setTimeout(() => {
-                context.commit("LOADING", "Buscar");
-                context.commit("ERRO_MESSAGE", {
-                    agencia: "erro agencia",
-                    conta: "erro Conta Corrente"
+            await api.get(`/account/balance/${params.agency}/${params.account}`)
+                .then(response => {
+                    context.commit("DATA",response.data)
+                })
+                .catch(error => {
+                    if (error.response.status === 422) {
+                        context.commit("ERRO_MESSAGE", error.response.data);
+                    }
+                })
+                .finally(() => {
+                    context.commit("LOADING", "Buscar");
                 });
-            }, 2000);
+
         }
     }
 };

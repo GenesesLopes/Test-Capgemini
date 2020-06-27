@@ -27,11 +27,13 @@
                         :mask="['##-#']"
                         type="text"
                         class="form-control"
-                        v-model="agencia"
+                        v-model="agency"
                         id="agencia"
-                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agencia !== undefined}"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.agency !== undefined}"
                       />
-                      <div class="invalid-feedback">{{messagens.agencia}}</div>
+                      <div class="invalid-feedback">
+                        <p v-for="message in messagens.agency" :key="message">{{message}}</p>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-8 col-sm-8">
@@ -43,14 +45,16 @@
                         </span>
                       </label>
                       <the-mask
-                        :mask="['#####-#']"
+                        :mask="['##.###-##']"
                         type="text"
                         class="form-control"
                         id="conta"
-                        v-model="conta"
-                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.conta !== undefined}"
+                        v-model="account"
+                        v-bind:class="{ 'is-invalid': messagens !== undefined && messagens.account !== undefined}"
                       />
-                      <div class="invalid-feedback">{{messagens.conta}}</div>
+                      <div class="invalid-feedback">
+                        <p v-for="message in messagens.account" :key="message">{{message}}</p>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-12" v-if="this.data !== null">
@@ -65,9 +69,9 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Nome Completo</td>
-                          <td>111.111.111-11</td>
-                          <td>R$ 40.00</td>
+                          <td>{{this.data.name}}</td>
+                          <td>{{this.data.cpf}}</td>
+                          <td>R$ {{this.data.balance}}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -87,15 +91,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="text-danger">
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr class="text-success">
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                       <tr
+                          v-for="historics in this.data.historic"
+                          :key="historics.id"
+                          v-bind:class="{ 'text-danger': historics.action == 'withdraw', 'text-success': historics.action == 'deposit' }"
+                        >
+                          <td>R$ {{ historics.value }}</td>
+                          <td>{{ historics.action == 'withdraw' ? 'Saque': 'Depósito'}}</td>
+                          <td>{{ historics.created_at }}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -105,8 +108,17 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-success" type="submit" v-bind:disabled=" !loading ? disabled : ''" >
-              <span class="spinner-border spinner-border-sm" v-if="this.loading" role="status" aria-hidden="true"></span>
+            <button
+              class="btn btn-success"
+              type="submit"
+              v-bind:disabled=" !loading ? disabled : ''"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                v-if="this.loading"
+                role="status"
+                aria-hidden="true"
+              ></span>
               {{button_text}}
             </button>
           </div>
@@ -120,8 +132,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      agencia: null,
-      conta: null
+      agency: null,
+      account: null
     };
   },
   computed: {
@@ -135,18 +147,18 @@ export default {
   },
   methods: {
     balance() {
-      const data = {
-        agencia: this.agencia,
-        conta: this.conta
+      const dataFilable = {
+        agency: this.agency,
+        account: this.account
       };
       //disparando evento de criar cliente
-      this.$store.dispatch("getBalance", data);
+      this.$store.dispatch("getBalance", dataFilable);
     }
   },
   mounted: function() {
     //Limpando mensagens de erro
     this.$store.commit("ERRO_MESSAGE");
-    this.$store.commit("DATA");
+    this.$store.commit("DATA",[]);
   }
 };
 </script>

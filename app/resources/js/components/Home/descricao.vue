@@ -34,9 +34,6 @@
             Permitir ao usuário a remoção de valores de sua conta, de acordo com o saldo disponível na mesma.
           </dd>
       </dl>
-      <p class="card-text lead text-justify">
-        Todas as operações realizadas, serão notificadas ao e-mail do usuário.
-      </p>
     </div>
   </div>
 </template>

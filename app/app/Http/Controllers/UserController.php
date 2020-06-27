@@ -34,7 +34,7 @@ class UserController extends Controller
     //Criação de novos usuários
     public function store(Request $request, CreateUserValidator $validatorUser)
     {
-
+        //sleep(2);
         //Validando entradas
         $validatedData = $validatorUser->validator($request);
 
@@ -127,6 +127,7 @@ class UserController extends Controller
     //Saque
     public function withdraw(Request $request, WithdrawValidator $validatorWithdraw)
     {
+        
         $validatedData = $validatorWithdraw->validator($request->all());
         if (count($validatedData))
             return response($validatedData, 422);
