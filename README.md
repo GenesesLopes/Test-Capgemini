@@ -34,7 +34,7 @@ Para a construção do projeto, foi utlizado as seguintes tecnologias:
         * Vuex
         * Vue-route
     * Bootstrap 4
-        * SAAS
+        * SASS
     * Axios
 * **Back-end.**
     * Lavavel Versão 7
