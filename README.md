@@ -1,6 +1,6 @@
 # Capgemini - Processo seletivo.
 
-Este projeto foi proposto como etapa de seleção para Desenvolvedor Pleno PHP.
+Este projeto foi proposto como etapa de seleção para Desenvolvedor PHP.
 
 # Sobre o projeto!
 
@@ -60,6 +60,8 @@ Para iniciar o projeto, não é obrigatório a utilização do docker, porém se
 ```bash
   cd Test-Capgemini
 ```
+
+- Renomerar os arquivos <code>.env.example</code> e <code>docker-compose.example.yml</code> para <code>.env</code> e <code>docker-compose.yml</code>
 
 - Para subir o container desejado, basta executar o comando (Windows, ou Linux):
 

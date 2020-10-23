@@ -133,7 +133,7 @@ export default {
   mounted: function(){
     //Limpando mensagens de erro e campo de sucesso
     this.$store.commit("ERRO_MESSAGE")
-    this.$store.commit("SUCCESS")
+    this.$store.commit("SUCCESS");
   }
 };
 </script>
